@@ -1,0 +1,59 @@
+class CurrencyConverterScreen extends StatefulWidget {
+  @override
+  _CurrencyConverterScreenState createState() => _CurrencyConverterScreenState();
+}
+
+class _CurrencyConverterScreenState extends State<CurrencyConverterScreen> {
+  String selectedCurrency = 'Dólar';
+  double conversionRate = 24.00; // Ejemplo de tasa de cambio
+  final TextEditingController controller = TextEditingController();
+  double result = 0.0;
+
+  void convert() {
+    setState(() {
+      double input = double.tryParse(controller.text) ?? 0.0;
+      result = input * conversionRate;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Cambio de Monedas'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            DropdownButton<String>(
+              value: selectedCurrency,
+              onChanged: (String? newValue) {
+                setState(() {
+                  selectedCurrency = newValue!;
+                  conversionRate = (selectedCurrency == 'Dólar') ? 24.00 : 28.00; // Ejemplo de tasa de cambio
+                });
+              },
+              items: <String>['Dólar', 'Euro'].map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+            ),
+            TextField(
+              controller: controller,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(labelText: 'Cantidad en Lempiras'),
+            ),
+            ElevatedButton(
+              onPressed: convert,
+              child: Text('Convertir'),
+            ),
+            Text('Resultado: $result $selectedCurrency'),
+          ],
+        ),
+      ),
+    );
+  }
+}

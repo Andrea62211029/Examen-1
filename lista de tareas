@@ -1,0 +1,24 @@
+class TasksScreen extends StatelessWidget {
+  final List<String> tasks = [
+    'Tarea 1: Estudiar para el examen de Flutter',
+    'Tarea 2: Participar en el foro de programación',
+    'Tarea 3: Completar el proyecto de la universidad',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Lista de Tareas'),
+      ),
+      body: ListView.builder(
+        itemCount: tasks.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(tasks[index]),
+          );
+        },
+      ),
+    );
+  }
+}

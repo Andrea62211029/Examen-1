@@ -9,14 +9,12 @@ class NewsScreen extends StatelessWidget {
         children: [
           Card(
             child: ListTile(
-              leading: Image.network('URL_DE_LA_IMAGEN'),
               title: Text('Título de la Noticia 1'),
               subtitle: Text('Resumen de la noticia 1...'),
             ),
           ),
           Card(
             child: ListTile(
-              leading: Image.network('URL_DE_LA_IMAGEN'),
               title: Text('Título de la Noticia 2'),
               subtitle: Text('Resumen de la noticia 2...'),
             ),
@@ -26,3 +24,4 @@ class NewsScreen extends StatelessWidget {
     );
   }
 }
+
